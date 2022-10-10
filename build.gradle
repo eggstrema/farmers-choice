@@ -1,0 +1,37 @@
+plugins {
+    id 'org.springframework.boot' version '3.0.0-SNAPSHOT'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'de.egga'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+jar {
+    enabled = false
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.spring.io/milestone' }
+    maven { url 'https://repo.spring.io/snapshot' }
+}
+
+dependencies {
+    implementation(
+            'org.springframework.boot:spring-boot-starter',
+            'org.springframework.boot:spring-boot-starter-web',
+            'org.springframework.boot:spring-boot-starter-webflux',
+            'com.squareup.okhttp3:okhttp'
+    )
+    testImplementation(
+            'org.springframework.boot:spring-boot-starter-test',
+            'org.assertj:assertj-core:3.22.0',
+            'io.rest-assured:rest-assured:5.0.1',
+            'net.javacrumbs.json-unit:json-unit:2.34.0'
+    )
+}
+
+test {
+    useJUnitPlatform()
+}
