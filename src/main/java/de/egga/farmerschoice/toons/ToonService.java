@@ -1,7 +1,7 @@
-package de.egga.farmerschoice.characters;
+package de.egga.farmerschoice.toons;
 
-import de.egga.farmerschoice.characters.repository.CharacterRepository;
-import de.egga.farmerschoice.characters.repository.Welcome;
+import de.egga.farmerschoice.toons.repository.ToonRepository;
+import de.egga.farmerschoice.toons.repository.Welcome;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +11,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CharacterService {
+public class ToonService {
 
     @Autowired
-    CharacterRepository repository;
+    ToonRepository repository;
 
     public List<String> getPhoenixIds() throws IOException {
         List<Welcome> welcomes = repository.readAllCharacters();

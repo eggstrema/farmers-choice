@@ -1,7 +1,7 @@
-package de.egga.farmerschoice.characters;
+package de.egga.farmerschoice.toons;
 
-import de.egga.farmerschoice.characters.repository.Converter;
-import de.egga.farmerschoice.characters.repository.Welcome;
+import de.egga.farmerschoice.toons.repository.Converter;
+import de.egga.farmerschoice.toons.repository.Welcome;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

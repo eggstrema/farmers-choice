@@ -1,6 +1,6 @@
-package de.egga.farmerschoice.characters.repository;
+package de.egga.farmerschoice.toons.repository;
 
-import de.egga.farmerschoice.characters.Toon;
+import de.egga.farmerschoice.toons.Toon;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Repository;
@@ -9,18 +9,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
 
 @Repository
-public class CharacterRepository {
+public class ToonRepository {
 
     @Value("classpath:characters.json")
     public Resource resource;
 
-    public CharacterRepository() {
+    public ToonRepository() {
     }
 
     public List<Welcome> readAllCharacters() throws IOException {

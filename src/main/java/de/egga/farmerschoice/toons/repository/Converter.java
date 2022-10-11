@@ -1,4 +1,4 @@
-package de.egga.farmerschoice.characters.repository;
+package de.egga.farmerschoice.toons.repository;
 
 import java.io.IOException;
 import com.fasterxml.jackson.databind.*;
