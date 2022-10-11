@@ -1,0 +1,413 @@
+{
+  "_type": "document",
+  "_meta": {
+    "url": "http://api.swgoh.gg/api/",
+    "title": "SWGOH.GG API"
+  },
+  "abilities": {
+    "list": {
+      "_type": "link",
+      "url": "/api/abilities/",
+      "action": "get",
+      "description": "query parameters: is_zeta=true | is_omicron=true"
+    },
+    "read": {
+      "_type": "link",
+      "url": "/api/abilities/{id}/",
+      "action": "get",
+      "description": "query parameters: is_zeta=true | is_omicron=true",
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "location": "path",
+          "schema": {
+            "_type": "string",
+            "title": "",
+            "description": ""
+          }
+        }
+      ]
+    }
+  },
+  "characters": {
+    "list": {
+      "_type": "link",
+      "url": "/api/characters/",
+      "action": "get"
+    },
+    "read": {
+      "_type": "link",
+      "url": "/api/characters/{id}/",
+      "action": "get",
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "location": "path",
+          "schema": {
+            "_type": "integer",
+            "title": "ID",
+            "description": "A unique integer value identifying this character."
+          }
+        }
+      ]
+    }
+  },
+  "datacron-affix-template-sets": {
+    "list": {
+      "_type": "link",
+      "url": "/api/datacron-affix-template-sets/",
+      "action": "get"
+    },
+    "read": {
+      "_type": "link",
+      "url": "/api/datacron-affix-template-sets/{id}/",
+      "action": "get",
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "location": "path",
+          "schema": {
+            "_type": "string",
+            "title": "",
+            "description": ""
+          }
+        }
+      ]
+    }
+  },
+  "datacron-sets": {
+    "list": {
+      "_type": "link",
+      "url": "/api/datacron-sets/",
+      "action": "get"
+    },
+    "read": {
+      "_type": "link",
+      "url": "/api/datacron-sets/{id}/",
+      "action": "get",
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "location": "path",
+          "schema": {
+            "_type": "string",
+            "title": "",
+            "description": ""
+          }
+        }
+      ]
+    }
+  },
+  "datacron-templates": {
+    "list": {
+      "_type": "link",
+      "url": "/api/datacron-templates/",
+      "action": "get"
+    },
+    "read": {
+      "_type": "link",
+      "url": "/api/datacron-templates/{id}/",
+      "action": "get",
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "location": "path",
+          "schema": {
+            "_type": "string",
+            "title": "",
+            "description": ""
+          }
+        }
+      ]
+    }
+  },
+  "gac": {
+    "active-event": {
+      "list": {
+        "_type": "link",
+        "url": "/api/gac/active-event/",
+        "action": "get"
+      }
+    },
+    "events": {
+      "list": {
+        "_type": "link",
+        "url": "/api/gac/events/",
+        "action": "get"
+      }
+    }
+  },
+  "gear": {
+    "list": {
+      "_type": "link",
+      "url": "/api/gear/",
+      "action": "get"
+    },
+    "read": {
+      "_type": "link",
+      "url": "/api/gear/{id}/",
+      "action": "get",
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "location": "path",
+          "schema": {
+            "_type": "integer",
+            "title": "ID",
+            "description": "A unique integer value identifying this gear."
+          }
+        }
+      ]
+    }
+  },
+  "gl-checklist": {
+    "list": {
+      "_type": "link",
+      "url": "/api/gl-checklist/",
+      "action": "get"
+    }
+  },
+  "guild-profile": {
+    "read": {
+      "_type": "link",
+      "url": "/api/guild-profile/{guild_id}/",
+      "action": "get",
+      "fields": [
+        {
+          "name": "guild_id",
+          "required": true,
+          "location": "path",
+          "schema": {
+            "_type": "string",
+            "title": "",
+            "description": ""
+          }
+        }
+      ]
+    }
+  },
+  "guild-squad-template": {
+    "read": {
+      "_type": "link",
+      "url": "/api/guild-squad-template/{squad_template_id}/",
+      "action": "get",
+      "fields": [
+        {
+          "name": "squad_template_id",
+          "required": true,
+          "location": "path",
+          "schema": {
+            "_type": "string",
+            "title": "",
+            "description": ""
+          }
+        }
+      ]
+    }
+  },
+  "guilds": {
+    "trigger-sync": {
+      "create": {
+        "_type": "link",
+        "url": "/api/guilds/{guild_id}/trigger-sync/",
+        "action": "post",
+        "fields": [
+          {
+            "name": "guild_id",
+            "required": true,
+            "location": "path",
+            "schema": {
+              "_type": "string",
+              "title": "",
+              "description": ""
+            }
+          }
+        ]
+      }
+    }
+  },
+  "player": {
+    "gac": {
+      "read": {
+        "_type": "link",
+        "url": "/api/player/{ally_code}/gac/{instance_id}/",
+        "action": "get",
+        "fields": [
+          {
+            "name": "ally_code",
+            "required": true,
+            "location": "path",
+            "schema": {
+              "_type": "string",
+              "title": "",
+              "description": ""
+            }
+          },
+          {
+            "name": "instance_id",
+            "required": true,
+            "location": "path",
+            "schema": {
+              "_type": "string",
+              "title": "",
+              "description": ""
+            }
+          }
+        ]
+      }
+    },
+    "gac-bracket": {
+      "list": {
+        "_type": "link",
+        "url": "/api/player/{ally_code}/gac-bracket/",
+        "action": "get",
+        "fields": [
+          {
+            "name": "ally_code",
+            "required": true,
+            "location": "path",
+            "schema": {
+              "_type": "string",
+              "title": "",
+              "description": ""
+            }
+          }
+        ]
+      }
+    },
+    "mods": {
+      "list": {
+        "_type": "link",
+        "url": "/api/player/{ally_code}/mods/",
+        "action": "get",
+        "fields": [
+          {
+            "name": "ally_code",
+            "required": true,
+            "location": "path",
+            "schema": {
+              "_type": "string",
+              "title": "",
+              "description": ""
+            }
+          }
+        ]
+      }
+    },
+    "search": {
+      "list": {
+        "_type": "link",
+        "url": "/api/player/search/",
+        "action": "get"
+      }
+    },
+    "read": {
+      "_type": "link",
+      "url": "/api/player/{ally_code}/",
+      "action": "get",
+      "fields": [
+        {
+          "name": "ally_code",
+          "required": true,
+          "location": "path",
+          "schema": {
+            "_type": "string",
+            "title": "",
+            "description": ""
+          }
+        }
+      ]
+    }
+  },
+  "players": {
+    "mods": {
+      "list": {
+        "_type": "link",
+        "url": "/api/players/{ally_code}/mods/",
+        "action": "get",
+        "fields": [
+          {
+            "name": "ally_code",
+            "required": true,
+            "location": "path",
+            "schema": {
+              "_type": "string",
+              "title": "",
+              "description": ""
+            }
+          }
+        ]
+      }
+    },
+    "trigger-sync": {
+      "create": {
+        "_type": "link",
+        "url": "/api/players/{ally_code}/trigger-sync/",
+        "action": "post",
+        "fields": [
+          {
+            "name": "ally_code",
+            "required": true,
+            "location": "path",
+            "schema": {
+              "_type": "string",
+              "title": "",
+              "description": ""
+            }
+          }
+        ]
+      }
+    }
+  },
+  "ships": {
+    "list": {
+      "_type": "link",
+      "url": "/api/ships/",
+      "action": "get"
+    },
+    "read": {
+      "_type": "link",
+      "url": "/api/ships/{id}/",
+      "action": "get",
+      "fields": [
+        {
+          "name": "id",
+          "required": true,
+          "location": "path",
+          "schema": {
+            "_type": "integer",
+            "title": "ID",
+            "description": "A unique integer value identifying this ship."
+          }
+        }
+      ]
+    }
+  },
+  "stat-definitions": {
+    "list": {
+      "_type": "link",
+      "url": "/api/stat-definitions/",
+      "action": "get"
+    }
+  },
+  "token-balance": {
+    "create": {
+      "_type": "link",
+      "url": "/api/token-balance",
+      "action": "post"
+    }
+  },
+  "units": {
+    "list": {
+      "_type": "link",
+      "url": "/api/units/",
+      "action": "get"
+    }
+  }
+}
