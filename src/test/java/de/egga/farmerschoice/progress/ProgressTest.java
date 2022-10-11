@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 import static java.nio.file.Path.of;
 
@@ -35,7 +36,14 @@ public class ProgressTest {
         String jsonUrl = "src/test/resources/progress.json";
         String fileContent = Files.readString(of(jsonUrl));
 
-        Welcome data = Converter.fromJsonString(fileContent);
+        Welcome welcome = Converter.fromJsonString(fileContent);
+
+        List<Unit> units = welcome.getUnits();
+
+        for (Unit unit : units) {
+            UnitData data = unit.getData();
+            System.out.println(data.getName());
+        }
 
     }
 }
