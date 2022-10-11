@@ -33,7 +33,7 @@ public class ToonRepository {
         ArrayList<Toon> characters = new ArrayList<>();
 
         for (RawToon rawToon : readRawToons()) {
-            characters.add(new Toon(rawToon.getBaseId()));
+            characters.add(new Toon(rawToon.getBaseId(), rawToon.getCategories()));
         }
 
         return characters;
@@ -48,5 +48,18 @@ public class ToonRepository {
             e.printStackTrace();
         }
         return emptyList();
+    }
+
+    public List<Toon> findAllPhoenixToons() {
+
+        List<Toon> foundToons = new ArrayList<>();
+
+        for (Toon toon : readAllToons()) {
+            if (toon.factions().contains("Phoenix")) {
+                foundToons.add(toon);
+            }
+        }
+
+        return foundToons;
     }
 }

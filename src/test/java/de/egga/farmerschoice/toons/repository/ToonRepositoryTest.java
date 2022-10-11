@@ -4,6 +4,7 @@ import de.egga.farmerschoice.toons.Toon;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 
+import java.util.Collections;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,10 +12,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ToonRepositoryTest {
 
     @Test
-    void toons_are_read_from_repository_and_mapped_to_domain_model() {
+    void all_toons_are_read_from_repository() {
         ToonRepository repository = new ToonRepository();
-        repository.resource = new ClassPathResource("characters.json");
+        repository.resource = new ClassPathResource("toons.json");
         List<Toon> toons = repository.readAllToons();
-        assertThat(toons).containsExactly(new Toon("LUMINARAUNDULI"));
+        assertThat(toons).hasSize(233);
+    }
+
+    @Test
+    void base_id_is_mapped() {
+        ToonRepository repository = new ToonRepository();
+        repository.resource = new ClassPathResource("toons.json");
+        List<Toon> toons = repository.readAllToons();
+        assertThat(toons.get(0).baseId()).isEqualTo("50RT");
+    }
+
+    @Test
+    void findAllPhoenixToons_finds_exactly_six_toons() {
+        ToonRepository repository = new ToonRepository();
+        repository.resource = new ClassPathResource("toons.json");
+        List<Toon> toons = repository.findAllPhoenixToons();
+        assertThat(toons).hasSize(6);
     }
 }
