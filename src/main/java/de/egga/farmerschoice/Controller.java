@@ -24,4 +24,17 @@ public class Controller {
             return response.body().string();
         }
     }
+
+    @GetMapping("/gear")
+    public String gear() throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+
+        String url = "https://swgoh.gg/api/gear/126/?format=json";
+        Request request = new Request.Builder().url(url).build();
+
+        try (Response response = client.newCall(request).execute()) {
+            return response.body().string();
+        }
+    }
 }
