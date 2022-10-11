@@ -11,9 +11,9 @@ import java.util.List;
 
 @Repository
 public class CharacterRepository {
+
     @Value("classpath:characters.json")
-    public
-    Resource resource;
+    public Resource resource;
 
     public CharacterRepository() {
     }
