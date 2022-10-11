@@ -15,25 +15,6 @@ public class ProgressService {
     @Autowired
     ProgresssRepository repository;
 
-    public String getMyProgress(List<String> phoenixIds) throws IOException {
-        Welcome welcome = repository.readAllProgress();
-
-        String result = "";
-        for (Unit unit : welcome.getUnits()) {
-            UnitData data = unit.getData();
-            if (phoenixIds.contains(data.getBaseId())) {
-                result += "<h2>" + data.getName() + "</h2>";
-
-                result += getColored("Level", data.getLevel(), 85, 80);
-                result += getColored("Gear", data.getGearLevel(), 12, 9);
-
-                result += "<hr>";
-            }
-        }
-
-        return result;
-    }
-
     public String getMyPhoenixProgress(List<Toon> phoenixIds) throws IOException {
         Welcome welcome = repository.readAllProgress();
 
