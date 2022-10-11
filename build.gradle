@@ -21,7 +21,6 @@ dependencies {
     implementation(
             'org.springframework.boot:spring-boot-starter',
             'org.springframework.boot:spring-boot-starter-web',
-            'org.springframework.boot:spring-boot-starter-webflux',
             'com.squareup.okhttp3:okhttp',
             'com.fasterxml.jackson.core:jackson-databind:2.13.4',
             'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.4'
