@@ -18,9 +18,7 @@ class CharacterTest {
         List<Welcome> welcomes = Converter.fromJsonString(fileContent);
 
         for (Welcome welcome : welcomes) {
-            System.out.println(welcome.getName() + " -> " + welcome.getCategories());
+            System.out.println(welcome.getBaseId() + " -> " + welcome.getCategories());
         }
-
-
     }
 }
