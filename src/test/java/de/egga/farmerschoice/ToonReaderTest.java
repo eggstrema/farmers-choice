@@ -18,12 +18,9 @@ public class ToonReaderTest {
         String jsonUrl = "src/test/resources/toons_small.json";
         String fileContent = Files.readString(of(jsonUrl));
 
-        ToonReader mapper = new ToonReader();
-        List<Toon> toons = mapper.map(fileContent);
-
-        assertThat(toons).isNotEmpty();
+        ToonReader reader = new ToonReader();
+        List<Toon> toons = reader.map(fileContent);
 
         assertThat(toons.get(0).getName()).isEqualTo("Admiral Ackbar");
     }
-
 }
