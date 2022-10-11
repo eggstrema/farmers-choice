@@ -32,7 +32,7 @@ public class ToonService {
         return characterIds;
     }
 
-    private List<RawToon> readAllCharacters() throws IOException {
-        return repository.readAllCharacters();
+    public List<Toon> getAllPhoenixToons() {
+        return repository.findAllPhoenixToons();
     }
 }
