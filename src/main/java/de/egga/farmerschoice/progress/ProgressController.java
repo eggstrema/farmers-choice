@@ -1,5 +1,6 @@
 package de.egga.farmerschoice.progress;
 
+import de.egga.farmerschoice.toons.Toon;
 import de.egga.farmerschoice.toons.ToonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +22,8 @@ public class ProgressController {
     public String phoenix() throws IOException {
 
         List<String> phoenixIds = toonService.getPhoenixIds();
+        List<Toon> phoenixes = toonService.getAllPhoenixToons();
 
-        return progressService.getMyProgress(phoenixIds);
+        return progressService.getMyPhoenixProgress(phoenixes);
     }
 }
