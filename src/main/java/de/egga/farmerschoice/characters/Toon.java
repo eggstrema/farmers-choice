@@ -1,4 +1,5 @@
 package de.egga.farmerschoice.characters;
 
-public class Character {
+public record Toon(String baseId) {
+
 }

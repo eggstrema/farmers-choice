@@ -1,0 +1,176 @@
+[
+  {
+    "name": "Luminara Unduli",
+    "base_id": "LUMINARAUNDULI",
+    "pk": 158,
+    "url": "http://swgoh.gg/characters/luminara-unduli/",
+    "image": "https://game-assets.swgoh.gg/tex.charui_luminara.png",
+    "power": 34527,
+    "description": "Versatile attacker with ability block and powerful party heal.",
+    "combat_type": 1,
+    "gear_levels": [
+      {
+        "tier": 1,
+        "gear": [
+          "006",
+          "006",
+          "008",
+          "003",
+          "004",
+          "011"
+        ]
+      },
+      {
+        "tier": 2,
+        "gear": [
+          "011",
+          "012",
+          "018",
+          "017",
+          "022",
+          "019"
+        ]
+      },
+      {
+        "tier": 3,
+        "gear": [
+          "015",
+          "022",
+          "013",
+          "041",
+          "040",
+          "044"
+        ]
+      },
+      {
+        "tier": 4,
+        "gear": [
+          "047",
+          "053",
+          "065",
+          "058",
+          "078",
+          "067"
+        ]
+      },
+      {
+        "tier": 5,
+        "gear": [
+          "066",
+          "036",
+          "040",
+          "058",
+          "071",
+          "075"
+        ]
+      },
+      {
+        "tier": 6,
+        "gear": [
+          "042",
+          "048",
+          "051",
+          "079",
+          "091",
+          "097"
+        ]
+      },
+      {
+        "tier": 7,
+        "gear": [
+          "069",
+          "024",
+          "102",
+          "092",
+          "100",
+          "107"
+        ]
+      },
+      {
+        "tier": 8,
+        "gear": [
+          "070",
+          "053",
+          "086",
+          "097",
+          "113",
+          "118"
+        ]
+      },
+      {
+        "tier": 9,
+        "gear": [
+          "024",
+          "071",
+          "092",
+          "110",
+          "107",
+          "125"
+        ]
+      },
+      {
+        "tier": 10,
+        "gear": [
+          "097",
+          "109",
+          "113",
+          "125",
+          "135",
+          "140"
+        ]
+      },
+      {
+        "tier": 11,
+        "gear": [
+          "124",
+          "131",
+          "133",
+          "138",
+          "144",
+          "141"
+        ]
+      },
+      {
+        "tier": 12,
+        "gear": [
+          "165",
+          "160",
+          "164",
+          "168",
+          "167",
+          "G12Finisher_LUMINARAUNDULI_A"
+        ]
+      },
+      {
+        "tier": 13,
+        "gear": [
+          "9999",
+          "9999",
+          "9999",
+          "9999",
+          "9999",
+          "9999"
+        ]
+      }
+    ],
+    "alignment": "Light Side",
+    "categories": [
+      "Galactic Republic",
+      "Healer",
+      "Jedi",
+      "Leader"
+    ],
+    "ability_classes": [
+      "Ability Block",
+      "Evasion Up",
+      "Heal",
+      "Leader: +Evasion",
+      "Leader: +Max Health",
+      "Leader: Healing"
+    ],
+    "role": "Leader",
+    "ship": "",
+    "ship_slot": null,
+    "activate_shard_count": 50
+  }
+]
