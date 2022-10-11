@@ -14,7 +14,7 @@ class ToonRepositoryTest {
     void toons_are_read_from_repository_and_mapped_to_domain_model() {
         ToonRepository repository = new ToonRepository();
         repository.resource = new ClassPathResource("characters.json");
-        List<Toon> characters = repository.readAllCharacters2();
-        assertThat(characters).containsExactly(new Toon("LUMINARAUNDULI"));
+        List<Toon> toons = repository.readAllToons();
+        assertThat(toons).containsExactly(new Toon("LUMINARAUNDULI"));
     }
 }

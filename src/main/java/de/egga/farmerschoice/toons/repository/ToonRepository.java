@@ -29,7 +29,7 @@ public class ToonRepository {
         return Converter.fromJsonString(fileContent);
     }
 
-    public List<Toon> readAllCharacters2() {
+    public List<Toon> readAllToons() {
 
         ArrayList<Toon> characters = new ArrayList<>();
 
