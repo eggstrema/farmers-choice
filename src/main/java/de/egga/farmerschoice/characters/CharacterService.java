@@ -1,7 +1,8 @@
 package de.egga.farmerschoice.characters;
 
 import org.jetbrains.annotations.NotNull;
-import org.springframework.core.io.ClassPathResource;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -11,6 +12,9 @@ import java.util.List;
 
 @Service
 public class CharacterService {
+
+    @Value("classpath:characters.json")
+    Resource resource;
 
     public List<String> getPhoenixIds() throws IOException {
         List<Welcome> welcomes = readAllCharacters();
@@ -29,8 +33,6 @@ public class CharacterService {
     }
 
     private List<Welcome> readAllCharacters() throws IOException {
-        ClassPathResource resource = new ClassPathResource("characters.json");
-
         String fileContent = Files.readString(resource.getFile().toPath());
 
         return Converter.fromJsonString(fileContent);

@@ -1,7 +1,9 @@
 package de.egga.farmerschoice.progress;
 
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -10,6 +12,10 @@ import java.util.List;
 
 @Service
 public class ProgressService {
+
+    @Value("classpath:progress.json")
+    Resource resource;
+
     public String getMyProgress(List<String> phoenixIds) throws IOException {
         Welcome welcome = readAllProgress();
 
@@ -41,8 +47,6 @@ public class ProgressService {
     }
 
     private Welcome readAllProgress() throws IOException {
-        ClassPathResource resource = new ClassPathResource("progress.json");
-
         String fileContent = Files.readString(resource.getFile().toPath());
 
         return Converter.fromJsonString(fileContent);
