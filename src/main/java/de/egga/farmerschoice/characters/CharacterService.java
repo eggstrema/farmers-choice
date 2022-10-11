@@ -12,15 +12,13 @@ import java.util.List;
 @Service
 public class CharacterService {
 
-    public String getMyPhoenixCharacters() throws IOException {
+    public List<String> getPhoenixIds() throws IOException {
         List<Welcome> welcomes = readAllCharacters();
-        List<String> characterIds = getPhoenixIds(welcomes);
-
-        return characterIds.toString();
+        return filterPhoenixIds(welcomes);
     }
 
     @NotNull
-    private List<String> getPhoenixIds(List<Welcome> welcomes) {
+    private List<String> filterPhoenixIds(List<Welcome> welcomes) {
         List<String> characterIds = new ArrayList<>();
         for (Welcome welcome : welcomes) {
             if (welcome.getCategories().contains("Phoenix")) {

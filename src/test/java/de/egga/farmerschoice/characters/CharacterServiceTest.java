@@ -9,6 +9,6 @@ class CharacterServiceTest {
     @Test
     void name() throws IOException {
         CharacterService service = new CharacterService();
-        service.getMyPhoenixCharacters();
+        service.getPhoenixIds();
     }
 }
