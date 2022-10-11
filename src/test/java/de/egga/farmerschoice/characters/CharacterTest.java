@@ -1,5 +1,7 @@
 package de.egga.farmerschoice.characters;
 
+import de.egga.farmerschoice.characters.repository.Converter;
+import de.egga.farmerschoice.characters.repository.Welcome;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

@@ -1,25 +1,21 @@
 package de.egga.farmerschoice.progress;
 
+import de.egga.farmerschoice.progress.repository.*;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.util.List;
 
 @Service
 public class ProgressService {
 
-    @Value("classpath:progress.json")
-    Resource resource;
+    @Autowired
+    ProgresssRepository repository;
 
     public String getMyProgress(List<String> phoenixIds) throws IOException {
-        Welcome welcome = readAllProgress();
+        Welcome welcome = repository.readAllProgress();
 
         String result = "";
         for (Unit unit : welcome.getUnits()) {
@@ -46,12 +42,5 @@ public class ProgressService {
                 color = "#e7b416";
         }
         return "<span style=background:" + color + ">" + label + ": " + actualLevel + "</span><br>";
-    }
-
-    private Welcome readAllProgress() throws IOException {
-        InputStream inputStream = resource.getInputStream();
-        String fileContent = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
-
-        return Converter.fromJsonString(fileContent);
     }
 }

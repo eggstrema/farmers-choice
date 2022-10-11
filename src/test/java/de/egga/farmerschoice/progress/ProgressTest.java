@@ -1,6 +1,9 @@
 package de.egga.farmerschoice.progress;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import de.egga.farmerschoice.progress.repository.Converter;
+import de.egga.farmerschoice.progress.repository.Unit;
+import de.egga.farmerschoice.progress.repository.UnitData;
+import de.egga.farmerschoice.progress.repository.Welcome;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

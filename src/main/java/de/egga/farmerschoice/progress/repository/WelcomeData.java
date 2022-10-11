@@ -1,4 +1,4 @@
-package de.egga.farmerschoice.progress;
+package de.egga.farmerschoice.progress.repository;
 
 import com.fasterxml.jackson.annotation.*;
 import java.time.OffsetDateTime;

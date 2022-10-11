@@ -1,4 +1,4 @@
-package de.egga.farmerschoice.characters;
+package de.egga.farmerschoice.characters.repository;
 
 import com.fasterxml.jackson.annotation.*;
 import java.util.List;
