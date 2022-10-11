@@ -12,7 +12,7 @@ class CharacterTest {
 
     @Test
     void name() throws IOException {
-        String jsonUrl = "src/test/resources/characters.json";
+        String jsonUrl = "src/main/resources/characters.json";
         String fileContent = Files.readString(of(jsonUrl));
 
         List<Welcome> welcomes = Converter.fromJsonString(fileContent);

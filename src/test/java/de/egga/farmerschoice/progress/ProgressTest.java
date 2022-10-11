@@ -20,7 +20,7 @@ public class ProgressTest {
     @Disabled
     void fetch_progress() throws IOException {
         String dataUrl = "https://swgoh.gg/api/player/354925741/?format=json";
-        Path targetFile = of("src/test/resources/progress.json");
+        Path targetFile = of("src/main/resources/progress.json");
 
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder().url(dataUrl).build();
@@ -33,7 +33,7 @@ public class ProgressTest {
 
     @Test
     void name() throws IOException {
-        String jsonUrl = "src/test/resources/progress.json";
+        String jsonUrl = "src/main/resources/progress.json";
         String fileContent = Files.readString(of(jsonUrl));
 
         Welcome welcome = Converter.fromJsonString(fileContent);
