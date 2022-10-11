@@ -1,5 +1,6 @@
 package de.egga.farmerschoice.characters;
 
+import org.jetbrains.annotations.NotNull;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
@@ -12,19 +13,29 @@ import java.util.List;
 public class CharacterService {
 
     public String getMyPhoenixCharacters() throws IOException {
-        ClassPathResource resource = new ClassPathResource("characters.json");
+        List<Welcome> welcomes = readAllCharacters();
+        List<String> characterIds = getPhoenixIds(welcomes);
 
-        String fileContent = Files.readString(resource.getFile().toPath());
+        return characterIds.toString();
+    }
 
-        List<Welcome> welcomes = Converter.fromJsonString(fileContent);
-
+    @NotNull
+    private List<String> getPhoenixIds(List<Welcome> welcomes) {
         List<String> characterIds = new ArrayList<>();
         for (Welcome welcome : welcomes) {
             if (welcome.getCategories().contains("Phoenix")) {
                 characterIds.add(welcome.getBaseId());
             }
         }
+        return characterIds;
+    }
 
-        return characterIds.toString();
+    private List<Welcome> readAllCharacters() throws IOException {
+        ClassPathResource resource = new ClassPathResource("characters.json");
+
+        String fileContent = Files.readString(resource.getFile().toPath());
+
+        List<Welcome> welcomes = Converter.fromJsonString(fileContent);
+        return welcomes;
     }
 }
