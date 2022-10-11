@@ -1,7 +1,7 @@
 package de.egga.farmerschoice.toons;
 
 import de.egga.farmerschoice.toons.repository.ToonRepository;
-import de.egga.farmerschoice.toons.repository.Welcome;
+import de.egga.farmerschoice.toons.repository.raw.RawToon;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,22 +17,22 @@ public class ToonService {
     ToonRepository repository;
 
     public List<String> getPhoenixIds() throws IOException {
-        List<Welcome> welcomes = repository.readAllCharacters();
-        return filterPhoenixIds(welcomes);
+        List<RawToon> rawToons = repository.readAllCharacters();
+        return filterPhoenixIds(rawToons);
     }
 
     @NotNull
-    private List<String> filterPhoenixIds(List<Welcome> welcomes) {
+    private List<String> filterPhoenixIds(List<RawToon> rawToons) {
         List<String> characterIds = new ArrayList<>();
-        for (Welcome welcome : welcomes) {
-            if (welcome.getCategories().contains("Phoenix")) {
-                characterIds.add(welcome.getBaseId());
+        for (RawToon rawToon : rawToons) {
+            if (rawToon.getCategories().contains("Phoenix")) {
+                characterIds.add(rawToon.getBaseId());
             }
         }
         return characterIds;
     }
 
-    private List<Welcome> readAllCharacters() throws IOException {
+    private List<RawToon> readAllCharacters() throws IOException {
         return repository.readAllCharacters();
     }
 }

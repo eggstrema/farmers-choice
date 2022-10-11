@@ -1,7 +1,7 @@
 package de.egga.farmerschoice.toons;
 
-import de.egga.farmerschoice.toons.repository.Converter;
-import de.egga.farmerschoice.toons.repository.Welcome;
+import de.egga.farmerschoice.toons.repository.raw.RawToonParser;
+import de.egga.farmerschoice.toons.repository.raw.RawToon;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -17,10 +17,10 @@ class CharacterTest {
         String jsonUrl = "src/main/resources/characters.json";
         String fileContent = Files.readString(of(jsonUrl));
 
-        List<Welcome> welcomes = Converter.fromJsonString(fileContent);
+        List<RawToon> rawToons = RawToonParser.fromJsonString(fileContent);
 
-        for (Welcome welcome : welcomes) {
-            System.out.println(welcome.getBaseId() + " -> " + welcome.getCategories());
+        for (RawToon rawToon : rawToons) {
+            System.out.println(rawToon.getBaseId() + " -> " + rawToon.getCategories());
         }
     }
 }

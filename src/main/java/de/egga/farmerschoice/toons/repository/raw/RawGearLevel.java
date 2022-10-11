@@ -1,9 +1,9 @@
-package de.egga.farmerschoice.toons.repository;
+package de.egga.farmerschoice.toons.repository.raw;
 
 import com.fasterxml.jackson.annotation.*;
 import java.util.List;
 
-public class GearLevel {
+public class RawGearLevel {
     private long tier;
     private List<String> gear;
 

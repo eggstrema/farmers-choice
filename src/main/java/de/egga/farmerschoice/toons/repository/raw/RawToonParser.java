@@ -1,10 +1,11 @@
-package de.egga.farmerschoice.toons.repository;
+package de.egga.farmerschoice.toons.repository.raw;
 
 import java.io.IOException;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+
 import java.util.*;
 import java.time.OffsetDateTime;
 import java.time.OffsetTime;
@@ -14,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
 
-public class Converter {
+public class RawToonParser {
     // Date-time helpers
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
@@ -28,7 +29,7 @@ public class Converter {
             .withZone(ZoneOffset.UTC);
 
     public static OffsetDateTime parseDateTimeString(String str) {
-        return ZonedDateTime.from(Converter.DATE_TIME_FORMATTER.parse(str)).toOffsetDateTime();
+        return ZonedDateTime.from(RawToonParser.DATE_TIME_FORMATTER.parse(str)).toOffsetDateTime();
     }
 
     private static final DateTimeFormatter TIME_FORMATTER = new DateTimeFormatterBuilder()
@@ -41,15 +42,15 @@ public class Converter {
             .withZone(ZoneOffset.UTC);
 
     public static OffsetTime parseTimeString(String str) {
-        return ZonedDateTime.from(Converter.TIME_FORMATTER.parse(str)).toOffsetDateTime().toOffsetTime();
+        return ZonedDateTime.from(RawToonParser.TIME_FORMATTER.parse(str)).toOffsetDateTime().toOffsetTime();
     }
     // Serialize/deserialize helpers
 
-    public static List<Welcome> fromJsonString(String json) throws IOException {
+    public static List<RawToon> fromJsonString(String json) throws IOException {
         return List.of(getObjectReader().readValue(json));
     }
 
-    public static String toJsonString(List<Welcome> obj) throws JsonProcessingException {
+    public static String toJsonString(List<RawToon> obj) throws JsonProcessingException {
         return getObjectWriter().writeValueAsString(obj);
     }
 
@@ -65,12 +66,12 @@ public class Converter {
             @Override
             public OffsetDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
                 String value = jsonParser.getText();
-                return Converter.parseDateTimeString(value);
+                return RawToonParser.parseDateTimeString(value);
             }
         });
         mapper.registerModule(module);
-        reader = mapper.readerFor(Welcome[].class);
-        writer = mapper.writerFor(Welcome[].class);
+        reader = mapper.readerFor(RawToon[].class);
+        writer = mapper.writerFor(RawToon[].class);
     }
 
     private static ObjectReader getObjectReader() {

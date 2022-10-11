@@ -1,9 +1,9 @@
-package de.egga.farmerschoice.toons.repository;
+package de.egga.farmerschoice.toons.repository.raw;
 
 import com.fasterxml.jackson.annotation.*;
 import java.util.List;
 
-public class Welcome {
+public class RawToon {
     private String name;
     private String baseId;
     private long pk;
@@ -12,7 +12,7 @@ public class Welcome {
     private long power;
     private String description;
     private long combatType;
-    private List<GearLevel> gearLevels;
+    private List<RawGearLevel> rawGearLevels;
     private String alignment;
     private List<String> categories;
     private List<String> abilityClasses;
@@ -62,9 +62,9 @@ public class Welcome {
     public void setCombatType(long value) { this.combatType = value; }
 
     @JsonProperty("gear_levels")
-    public List<GearLevel> getGearLevels() { return gearLevels; }
+    public List<RawGearLevel> getGearLevels() { return rawGearLevels; }
     @JsonProperty("gear_levels")
-    public void setGearLevels(List<GearLevel> value) { this.gearLevels = value; }
+    public void setGearLevels(List<RawGearLevel> value) { this.rawGearLevels = value; }
 
     @JsonProperty("alignment")
     public String getAlignment() { return alignment; }
