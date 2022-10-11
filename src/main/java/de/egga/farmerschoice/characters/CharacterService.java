@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,6 +18,13 @@ public class CharacterService {
 
         List<Welcome> welcomes = Converter.fromJsonString(fileContent);
 
-        return "mobb";
+        List<String> characterIds = new ArrayList<>();
+        for (Welcome welcome : welcomes) {
+            if (welcome.getCategories().contains("Phoenix")) {
+                characterIds.add(welcome.getBaseId());
+            }
+        }
+
+        return characterIds.toString();
     }
 }
