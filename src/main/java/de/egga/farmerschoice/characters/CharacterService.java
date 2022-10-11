@@ -6,6 +6,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,8 @@ public class CharacterService {
     }
 
     private List<Welcome> readAllCharacters() throws IOException {
-        String fileContent = Files.readString(resource.getFile().toPath());
+        InputStream inputStream = resource.getInputStream();
+        String fileContent = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
 
         return Converter.fromJsonString(fileContent);
     }
