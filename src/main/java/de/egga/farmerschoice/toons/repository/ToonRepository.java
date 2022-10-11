@@ -1,6 +1,7 @@
 package de.egga.farmerschoice.toons.repository;
 
 import de.egga.farmerschoice.toons.Toon;
+import de.egga.farmerschoice.toons.ToonId;
 import de.egga.farmerschoice.toons.repository.raw.RawToon;
 import de.egga.farmerschoice.toons.repository.raw.RawToonParser;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,7 +34,9 @@ public class ToonRepository {
         ArrayList<Toon> characters = new ArrayList<>();
 
         for (RawToon rawToon : readRawToons()) {
-            characters.add(new Toon(rawToon.getBaseId(), rawToon.getCategories()));
+            String rawId = rawToon.getBaseId();
+            ToonId id = new ToonId(rawId);
+            characters.add(new Toon(id, rawToon.getCategories()));
         }
 
         return characters;

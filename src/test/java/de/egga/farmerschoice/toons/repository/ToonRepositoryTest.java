@@ -1,6 +1,7 @@
 package de.egga.farmerschoice.toons.repository;
 
 import de.egga.farmerschoice.toons.Toon;
+import de.egga.farmerschoice.toons.ToonId;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 
@@ -23,7 +24,7 @@ class ToonRepositoryTest {
         ToonRepository repository = new ToonRepository();
         repository.resource = new ClassPathResource("toons.json");
         List<Toon> toons = repository.readAllToons();
-        assertThat(toons.get(0).baseId()).isEqualTo("50RT");
+        assertThat(toons.get(0).baseId()).isEqualTo(new ToonId("50RT"));
     }
 
     @Test

@@ -2,6 +2,7 @@ package de.egga.farmerschoice.progress;
 
 import de.egga.farmerschoice.progress.repository.*;
 import de.egga.farmerschoice.toons.Toon;
+import de.egga.farmerschoice.toons.ToonId;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +23,8 @@ public class ProgressService {
         for (Unit unit : welcome.getUnits()) {
             UnitData data = unit.getData();
             for (Toon phoenix : phoenixIds) {
-                if (phoenix.baseId().equals(data.getBaseId())) {
-
+                ToonId id = new ToonId(data.getBaseId());
+                if (phoenix.baseId().equals(id)) {
 
                     result += "<h2>" + data.getName() + "</h2>";
 
