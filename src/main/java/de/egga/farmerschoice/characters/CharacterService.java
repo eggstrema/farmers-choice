@@ -35,7 +35,6 @@ public class CharacterService {
 
         String fileContent = Files.readString(resource.getFile().toPath());
 
-        List<Welcome> welcomes = Converter.fromJsonString(fileContent);
-        return welcomes;
+        return Converter.fromJsonString(fileContent);
     }
 }
