@@ -23,14 +23,14 @@ dependencies {
             'org.springframework.boot:spring-boot-starter-web',
             'org.springframework.boot:spring-boot-starter-webflux',
             'com.squareup.okhttp3:okhttp',
-            'com.fasterxml.jackson.core:jackson-databind:2.9.0',
-            'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.0'
+            'com.fasterxml.jackson.core:jackson-databind:2.13.4',
+            'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.4'
     )
     testImplementation(
             'org.springframework.boot:spring-boot-starter-test',
-            'org.assertj:assertj-core:3.22.0',
-            'io.rest-assured:rest-assured:5.0.1',
-            'net.javacrumbs.json-unit:json-unit:2.34.0'
+            'org.assertj:assertj-core:3.23.1',
+            'io.rest-assured:rest-assured:5.2.0',
+            'net.javacrumbs.json-unit:json-unit:2.35.0'
     )
 }
 
