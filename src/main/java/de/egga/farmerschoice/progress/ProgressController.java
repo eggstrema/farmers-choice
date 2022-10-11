@@ -21,7 +21,6 @@ public class ProgressController {
     @GetMapping("/phoenix")
     public String phoenix() throws IOException {
 
-        List<String> phoenixIds = toonService.getPhoenixIds();
         List<Toon> phoenixes = toonService.getAllPhoenixToons();
 
         return progressService.getMyPhoenixProgress(phoenixes);
