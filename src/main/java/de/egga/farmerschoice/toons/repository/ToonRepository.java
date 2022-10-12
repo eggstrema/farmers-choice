@@ -3,66 +3,43 @@ package de.egga.farmerschoice.toons.repository;
 import de.egga.farmerschoice.toons.Toon;
 import de.egga.farmerschoice.toons.ToonId;
 import de.egga.farmerschoice.toons.repository.raw.RawToon;
-import de.egga.farmerschoice.toons.repository.raw.RawToonParser;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.Resource;
+import de.egga.farmerschoice.toons.repository.raw.RawToonReader;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.nio.charset.StandardCharsets.UTF_8;
-import static java.util.Collections.emptyList;
+import static de.egga.farmerschoice.toons.repository.ToonCategory.Phoenix;
 
 @Repository
 public class ToonRepository {
 
-    @Value("classpath:characters.json")
-    public Resource resource;
+    @Autowired
+    RawToonReader rawToonReader;
 
-    public List<RawToon> readAllCharacters() throws IOException {
-        InputStream inputStream = resource.getInputStream();
-        String fileContent = new String(inputStream.readAllBytes(), UTF_8);
+    public ToonCategories readAllCategories() {
+        ToonCategories characters = new ToonCategories();
 
-        return RawToonParser.fromJsonString(fileContent);
-    }
-
-    public List<Toon> readAllToons() {
-
-        ArrayList<Toon> characters = new ArrayList<>();
-
-        for (RawToon rawToon : readRawToons()) {
+        for (RawToon rawToon : rawToonReader.readRawToons()) {
             String rawId = rawToon.getBaseId();
-            ToonId id = new ToonId(rawId);
-            characters.add(new Toon(id, rawToon.getCategories()));
-        }
 
+            ToonId id = new ToonId(rawId);
+            List<ToonCategory> categories = getCategories(rawToon);
+
+            characters.add(new Toon(id, categories));
+        }
         return characters;
     }
 
-    private List<RawToon> readRawToons() {
-        try {
-            InputStream inputStream = resource.getInputStream();
-            String fileContent = new String(inputStream.readAllBytes(), UTF_8);
-            return RawToonParser.fromJsonString(fileContent);
-        } catch (IOException e) {
-            e.printStackTrace();
+    @NotNull
+    private List<ToonCategory> getCategories(RawToon rawToon) {
+        List<ToonCategory> categories = new ArrayList<>();
+
+        for (String rawCategory : rawToon.getCategories()) {
+            categories.add(ToonCategory.of(rawCategory));
         }
-        return emptyList();
-    }
-
-    public List<Toon> findAllPhoenixToons() {
-
-        List<Toon> foundToons = new ArrayList<>();
-
-        for (Toon toon : readAllToons()) {
-            if (toon.factions().contains("Phoenix")) {
-                foundToons.add(toon);
-            }
-        }
-
-        return foundToons;
+        return categories;
     }
 }

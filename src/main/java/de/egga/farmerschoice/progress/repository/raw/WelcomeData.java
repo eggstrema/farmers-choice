@@ -1,6 +1,9 @@
-package de.egga.farmerschoice.progress.repository;
+package de.egga.farmerschoice.progress.repository.raw;
 
 import com.fasterxml.jackson.annotation.*;
+import de.egga.farmerschoice.progress.repository.raw.Arena;
+import de.egga.farmerschoice.progress.repository.raw.FleetArena;
+
 import java.time.OffsetDateTime;
 import java.util.List;
 

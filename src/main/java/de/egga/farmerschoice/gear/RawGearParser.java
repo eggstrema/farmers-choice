@@ -1,25 +1,12 @@
-// To use this code, add the following Maven dependency to your project:
-//
-//
-//     com.fasterxml.jackson.core     : jackson-databind          : 2.9.0
-//     com.fasterxml.jackson.datatype : jackson-datatype-jsr310   : 2.9.0
-//
-// Import this package:
-//
-//     import de.egga.farmeschoice.progress.Converter;
-//
-// Then you can deserialize a JSON string with
-//
-//     Welcome data = Converter.fromJsonString(jsonString);
+package de.egga.farmerschoice.gear;
 
-package de.egga.farmerschoice.progress.repository;
 
-import java.io.IOException;
-import com.fasterxml.jackson.databind.*;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.*;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 
+import java.io.IOException;
 import java.time.OffsetDateTime;
 import java.time.OffsetTime;
 import java.time.ZoneOffset;
@@ -27,8 +14,9 @@ import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
+import java.util.List;
 
-public class Converter {
+public class RawGearParser {
     // Date-time helpers
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
@@ -42,7 +30,7 @@ public class Converter {
             .withZone(ZoneOffset.UTC);
 
     public static OffsetDateTime parseDateTimeString(String str) {
-        return ZonedDateTime.from(Converter.DATE_TIME_FORMATTER.parse(str)).toOffsetDateTime();
+        return ZonedDateTime.from(RawGearParser.DATE_TIME_FORMATTER.parse(str)).toOffsetDateTime();
     }
 
     private static final DateTimeFormatter TIME_FORMATTER = new DateTimeFormatterBuilder()
@@ -55,15 +43,15 @@ public class Converter {
             .withZone(ZoneOffset.UTC);
 
     public static OffsetTime parseTimeString(String str) {
-        return ZonedDateTime.from(Converter.TIME_FORMATTER.parse(str)).toOffsetDateTime().toOffsetTime();
+        return ZonedDateTime.from(RawGearParser.TIME_FORMATTER.parse(str)).toOffsetDateTime().toOffsetTime();
     }
     // Serialize/deserialize helpers
 
-    public static Welcome fromJsonString(String json) throws IOException {
-        return getObjectReader().readValue(json);
+    public static List<RawGearItem> fromJsonString(String json) throws IOException {
+        return List.of(getObjectReader().readValue(json));
     }
 
-    public static String toJsonString(Welcome obj) throws JsonProcessingException {
+    public static String toJsonString(List<RawGearItem> obj) throws JsonProcessingException {
         return getObjectWriter().writeValueAsString(obj);
     }
 
@@ -75,16 +63,16 @@ public class Converter {
         mapper.findAndRegisterModules();
         mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         SimpleModule module = new SimpleModule();
-        module.addDeserializer(OffsetDateTime.class, new JsonDeserializer<>() {
+        module.addDeserializer(OffsetDateTime.class, new JsonDeserializer<OffsetDateTime>() {
             @Override
-            public OffsetDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException {
+            public OffsetDateTime deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
                 String value = jsonParser.getText();
-                return Converter.parseDateTimeString(value);
+                return RawGearParser.parseDateTimeString(value);
             }
         });
         mapper.registerModule(module);
-        reader = mapper.readerFor(Welcome.class);
-        writer = mapper.writerFor(Welcome.class);
+        reader = mapper.readerFor(RawGearItem[].class);
+        writer = mapper.writerFor(RawGearItem[].class);
     }
 
     private static ObjectReader getObjectReader() {

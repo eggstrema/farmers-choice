@@ -1,8 +1,12 @@
 package de.egga.farmerschoice.progress;
 
-import de.egga.farmerschoice.progress.repository.*;
-import de.egga.farmerschoice.toons.Toon;
-import de.egga.farmerschoice.toons.ToonId;
+import de.egga.farmerschoice.progress.repository.ProgresssRepository;
+import de.egga.farmerschoice.progress.repository.RosterProgress;
+import de.egga.farmerschoice.progress.repository.ToonProgress;
+import de.egga.farmerschoice.progress.view.EarlySquad;
+import de.egga.farmerschoice.progress.view.EarlySquads;
+import de.egga.farmerschoice.toons.repository.ToonCategories;
+import de.egga.farmerschoice.toons.repository.ToonCategory;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,43 +14,66 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 
+import static de.egga.farmerschoice.toons.repository.ToonCategory.*;
+
 @Service
 public class ProgressService {
 
     @Autowired
     ProgresssRepository repository;
 
-    public String getMyPhoenixProgress(List<Toon> phoenixIds) throws IOException {
-        Welcome welcome = repository.readAllProgress();
+    public EarlySquads getMyEarlySquads(ToonCategories categories) throws IOException {
+        List<EarlySquad> earlySquads = defineEarlySquads();
 
-        String result = "";
-        for (Unit unit : welcome.getUnits()) {
-            UnitData data = unit.getData();
-            for (Toon phoenix : phoenixIds) {
-                ToonId id = new ToonId(data.getBaseId());
-                if (phoenix.baseId().equals(id)) {
+        RosterProgress rosterProgress = repository.readToonProgress();
 
-                    result += "<h2>" + data.getName() + "</h2>";
+        for (ToonProgress toon : rosterProgress.getToons()) {
 
-                    result += getColored("Level", data.getLevel(), 85, 80);
-                    result += getColored("Gear", data.getGearLevel(), 12, 9);
+            List<ToonCategory> list = categories.of(toon.id());
 
-                    result += "<hr>";
+            if (list != null) {
+                for (EarlySquad squad : earlySquads) {
+                    if (list.contains(squad.getCategory())) {
+                        squad.add(toon);
+                    }
                 }
             }
         }
 
-        return result;
+        EarlySquads squads = new EarlySquads();
+        for (EarlySquad squad : earlySquads) {
+            squads.add(squad);
+        }
+
+        return squads;
     }
 
     @NotNull
-    private String getColored(String label, long actualLevel, int recommendedLevel, int minimumLevel) {
-        String color = "#cc3232";
-        if (actualLevel == recommendedLevel) {
-            color = "#2dc937";
-        } else if (actualLevel >= minimumLevel) {
-            color = "#e7b416";
-        }
-        return "<span style=background:" + color + ">" + label + ": " + actualLevel + "</span><br>";
+    private List<EarlySquad> defineEarlySquads() {
+        List<EarlySquad> earlySquads = List.of(
+                new EarlySquad(Phoenix),
+                new EarlySquad(Empire),
+                new EarlySquad(Jedi),
+                new EarlySquad(Rebel),
+                new EarlySquad(BountyHunter),
+                new EarlySquad(Geonosian),
+                new EarlySquad(OldRepublic),
+                new EarlySquad(Sith),
+                new EarlySquad(Ewok),
+                new EarlySquad(Droid),
+                new EarlySquad(CloneTrooper),
+                new EarlySquad(Nightsister),
+                new EarlySquad(BadBatch),
+                new EarlySquad(FirstOrder),
+                new EarlySquad(HuttCartel),
+                new EarlySquad(Scoundrel),
+                new EarlySquad(Mandalorian),
+                new EarlySquad(Resistance),
+                new EarlySquad(RogueOne),
+                new EarlySquad(Smuggler),
+                new EarlySquad(Tusken)
+
+        );
+        return earlySquads;
     }
 }

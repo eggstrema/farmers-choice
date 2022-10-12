@@ -1,10 +1,13 @@
-package de.egga.farmerschoice.progress.repository;
+package de.egga.farmerschoice.progress.repository.raw;
 
 import com.fasterxml.jackson.annotation.*;
+import de.egga.farmerschoice.progress.repository.raw.AbilityDatum;
+import de.egga.farmerschoice.progress.repository.raw.Gear;
+
 import java.util.List;
 import java.util.Map;
 
-public class Data {
+public class UnitData {
     private String baseId;
     private String name;
     private long gearLevel;

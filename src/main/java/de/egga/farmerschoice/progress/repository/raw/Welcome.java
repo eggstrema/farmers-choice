@@ -1,6 +1,7 @@
-package de.egga.farmerschoice.progress.repository;
+package de.egga.farmerschoice.progress.repository.raw;
 
 import com.fasterxml.jackson.annotation.*;
+
 import java.util.List;
 
 public class Welcome {
